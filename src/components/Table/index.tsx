@@ -22,7 +22,7 @@ export const Table: React.FC = () => {
   const [isEditingId, setIsEditingId] = useState<number>();
 
   const [curretntPage, setCurrentPage] = useState(1);
-  const [rowPerPage, setRowPerPage] = useState(4);
+  const rowPerPage = 4;
 
   useEffect(() => {
     dispatch(fetchData());
@@ -140,9 +140,29 @@ export const Table: React.FC = () => {
         <tr>
           <td colSpan={6}>
             <div className="table__navigation">
-              <button onClick={() => (setCurrentPage(curretntPage - 1))} disabled={curretntPage === pageNumbers[0]} className="table__navigation-button">{'<'}</button>
-              {pageNumbers.map(num => <button className={cn('table__navigation-page-button', {'table__navigation-page-button--active': num === curretntPage})}  onClick={() => handleButtonClick(num)} key={num}>{num}</button>)}
-              <button onClick={() => (setCurrentPage(curretntPage + 1))}  disabled={curretntPage === pageNumbers[pageNumbers.length-1]} className="table__navigation-button">{'>'}</button>
+              <img src={require('./img/first.jpg')} alt="mem" className="table__mem" />
+              <div className="table__navigation-button-group">
+                <button 
+                  onClick={() => (setCurrentPage(curretntPage - 1))} 
+                  disabled={curretntPage === pageNumbers[0]} 
+                  className="table__navigation-button"
+                >
+                  {'<'}
+                </button>
+                {pageNumbers.map(num => <button className={cn(
+                  'table__navigation-page-button', 
+                  {'table__navigation-page-button--active': num === curretntPage},
+                )}  onClick={() => handleButtonClick(num)} key={num}>{num}
+                </button>)}
+                <button 
+                  onClick={() => (setCurrentPage(curretntPage + 1))}  
+                  disabled={curretntPage === pageNumbers[pageNumbers.length-1]} 
+                  className="table__navigation-button"
+                >
+                  {'>'}
+                </button>
+              </div>
+              <img src={require('./img/second.jpg')} alt="mem" className="table__mem" />
             </div>
           </td>
         </tr>

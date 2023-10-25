@@ -18,12 +18,6 @@
     text-align: center;
   }
 
-  &__row {
-    &--head {
-      
-    }
-  }
-
   &__cell {
     
     border: 3px solid $first-color;
@@ -31,11 +25,8 @@
     line-height: 18px;
     border-left: none;
     border-right: none;
-    
     border-top: none;
-    
-    &--head {
-    }
+
   }
 
   &__body {
@@ -65,23 +56,29 @@
     margin: 0px auto;
   }
 
-  &__foot {
-
+  &__mem {
+    width: 250px;
+    height: 250px;
   }
 
   &__navigation {
     padding: 20px 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    &-button {
-      border: none;
-      background-color:  $first-color;
-      padding: 30px 20px;
+    justify-content: space-between;
+
+    &-button-group {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
+    }
+
+
+    &-button {
+      border: none;
+      background-color:  $first-color;
+      padding: 30px 20px;
       padding: 15px;
       margin: 0px 10px;
       border-radius: 50%;
@@ -95,10 +92,12 @@
       &:disabled {
         transform: none;
         color: $fourth-color;
-        cursor: not-allowed;
+        cursor: no;
       }
 
     }
+
+ 
 
     &-page-button {
       border: none;
