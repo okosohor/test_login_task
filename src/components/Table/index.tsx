@@ -33,6 +33,10 @@ export const Table: React.FC = () => {
     setIsEditingId(id);
   };
 
+  const isEditing = (field_name: string, id:number) => (
+    isEditingField === 'email' && isEditingId === id
+  );
+
   const lastRowindex = curretntPage * rowPerPage;
   const firstRowIndex = lastRowindex - rowPerPage;
   const currentRow = data.slice(firstRowIndex, lastRowindex);
@@ -86,54 +90,101 @@ export const Table: React.FC = () => {
           <td onDoubleClick={() => {seleceEditing('id', el.id);}} className="table__cell">
             {el.id}
           </td>
-          <td onDoubleClick={() => {seleceEditing('name', el.id);}} className="table__cell">
-            {(isEditingField === 'name' && isEditingId === el.id) ? ( 
-              <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'name')}>
-                <input size={el.name.length} className="table__input" type="text" 
-                  defaultValue={el.name}/>
-              </form>
+          <td onDoubleClick={() => {seleceEditing('name', el.id);}} className="table__cell">{
+            isEditingField === 'name' && isEditingId === el.id ? (
+              <>
+                <form className="table__form table__form--is-editing" onSubmit={ (e) => handleSubmit(e , el.id, 'name')}>
+                  <input size={el.name.length} className="table__input" type="text" 
+                    defaultValue={el.name}/>
+                  <div className={cn('table__text table__text--is-editing')}>{el.name}</div>
+                </form> 
+              </>
             ) : (
-              <div className="table__text">{el.name}</div>
+              <>
+                <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'name')}>
+                  <input size={el.name.length} className="table__input" type="text" 
+                    defaultValue={el.name}/>
+                </form> 
+                <div className={cn('table__text')}>{el.name}</div>
+              </>
             )}
           </td>
           <td onDoubleClick={() => {seleceEditing('email', el.id);}} className="table__cell">{
-            (isEditingField === 'email' && isEditingId === el.id) ? ( 
-              <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'email')}>
-                <input size={el.email.length} className="table__input" type="text" 
-                  defaultValue={el.email}/>
-              </form> 
+            isEditingField === 'email' && isEditingId === el.id ? (
+              <>
+                <form className="table__form table__form--is-editing" onSubmit={ (e) => handleSubmit(e , el.id, 'email')}>
+                  <input size={el.email.length} className="table__input" type="text" 
+                    defaultValue={el.email}/>
+                  <div className={cn('table__text table__text--is-editing')}>{el.email}</div>
+                </form> 
+              </>
             ) : (
-              <div className="table__text">{el.email}</div>
-            )}</td>
-          <td  onDoubleClick={() => {seleceEditing('birthday_date', el.id);}}className="table__cell">{
-            (isEditingField === 'birthday_date' && isEditingId === el.id) ? ( 
-              <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'birthday_date')}>
-                <input size={el.birthday_date.length} className="table__input" type="text" 
-                  defaultValue={el.birthday_date}
-                />
-              </form> 
+              <>
+                <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'email')}>
+                  <input size={el.email.length} className="table__input" type="text" 
+                    defaultValue={el.email}/>
+                </form> 
+                <div className={cn('table__text')}>{el.email}</div>
+              </>
+            )}
+          </td>
+          <td onDoubleClick={() => {seleceEditing('birthday_date', el.id);}} className="table__cell">{
+            isEditingField === 'birthday_date' && isEditingId === el.id ? (
+              <>
+                <form className="table__form table__form--is-editing" onSubmit={ (e) => handleSubmit(e , el.id, 'birthday_date')}>
+                  <input size={el.birthday_date.length} className="table__input" type="text" 
+                    defaultValue={el.birthday_date}/>
+                  <div className={cn('table__text table__text--is-editing')}>{el.birthday_date}</div>
+                </form> 
+              </>
             ) : (
-              <div className="table__text">{el.birthday_date}</div>
-            )}</td>
+              <>
+                <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'birthday_date')}>
+                  <input size={el.birthday_date.length} className="table__input" type="text" 
+                    defaultValue={el.birthday_date}/>
+                </form> 
+                <div className={cn('table__text')}>{el.birthday_date}</div>
+              </>
+            )}
+          </td>
           <td onDoubleClick={() => {seleceEditing('phone_number', el.id);}} className="table__cell">{
-            (isEditingField === 'phone_number' && isEditingId === el.id) ? ( 
-              <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'phone_number')}>
-                <input className="table__input" type="text" defaultValue={el.phone_number}
-                  size={el.phone_number.length}
-                />
-              </form> 
+            isEditingField === 'phone_number' && isEditingId === el.id ? (
+              <>
+                <form className="table__form table__form--is-editing" onSubmit={ (e) => handleSubmit(e , el.id, 'phone_number')}>
+                  <input size={el.phone_number.length} className="table__input" type="text" 
+                    defaultValue={el.phone_number}/>
+                  <div className={cn('table__text table__text--is-editing')}>{el.phone_number}</div>
+                </form> 
+              </>
             ) : (
-              <div className="table__text">{el.phone_number}</div>
-            )}</td>
+              <>
+                <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'phone_number')}>
+                  <input size={el.phone_number.length} className="table__input" type="text" 
+                    defaultValue={el.phone_number}/>
+                </form> 
+                <div className={cn('table__text')}>{el.phone_number}</div>
+              </>
+            )}
+          </td>
           <td onDoubleClick={() => {seleceEditing('address', el.id);}} className="table__cell">{
-            (isEditingField === 'address' && isEditingId === el.id) ? ( 
-              <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'address')}>
-                <input size={el.address.length} className="table__input" type="text" 
-                  defaultValue={el.address}/>
-              </form> 
+            isEditingField === 'address' && isEditingId === el.id ? (
+              <>
+                <form className="table__form table__form--is-editing" onSubmit={ (e) => handleSubmit(e , el.id, 'address')}>
+                  <input size={el.address.length} className="table__input" type="text" 
+                    defaultValue={el.address}/>
+                  <div className={cn('table__text table__text--is-editing')}>{el.address}</div>
+                </form> 
+              </>
             ) : (
-              <div className="table__text">{el.address}</div>
-            )}</td>
+              <>
+                <form className="table__form" onSubmit={ (e) => handleSubmit(e , el.id, 'address')}>
+                  <input size={el.address.length} className="table__input" type="text" 
+                    defaultValue={el.address}/>
+                </form> 
+                <div className={cn('table__text')}>{el.address}</div>
+              </>
+            )}
+          </td>
         </tr>)}
       </tbody>
       <tfoot className="table__foot">
